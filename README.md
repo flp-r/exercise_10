@@ -1,33 +1,33 @@
 # Suffix Trees
 
 ### Task 1
- * In R, implement a function `SuffixArray()` to create a suffix array from a string.
+* In R, implement a function `SuffixArray()` to create a suffix array from a string.
 
- * Input:
-   * a DNAString 
+* Input:
+    * A `DNAString` object .
 
- * Output:
-   * a vector of integers
+* Output:
+    * A vector of integers.
 
 ### Task 2
- * In R, implement a function `InverseSuffixArray()` to create an inverse suffix array from a suffix array.
+* In R, implement a function `InverseSuffixArray()` to create an inverse suffix array from a suffix array.
 
- * Input:
-   * a vector of integers representing suffix array
+* Input:
+    * A vector of integers representing suffix array.
 
- * Output:
-   * a vector of integers
+* Output:
+    * A vector of integers.
 
 ### Task 3
- * In R, implement a function `LCPArray()` according to pseudocode.
+* In R, implement a function `LCPArray()` according to pseudocode.
 
- * Input:
-   * a DNAString representing analyzed string
-   * a vector of integers representing a suffix array
-   * a vector of integers representing an inverse suffix array
+* Input:
+    * `text` A `DNAString` representing analyzed string.
+    * `SA` A vector of integers representing a suffix array.
+    * `ISA` A vector of integers representing an inverse suffix array.
 
- * Output:
-   * a vector of integers
+* Output:
+    * `LCP` A vector of integers.
 
 ```
 LCPArray(text, SA, ISA)
@@ -46,40 +46,42 @@ LCPArray(text, SA, ISA)
 ```
 
 **Hint:** 
-The text will be indexed at *m* + 1 position, that does not exist. Add one character at the end of the text (in general use `$`, for `DNAString` in R use `+`).
+The text will be indexed at *m* + 1 position, that does not exist. Add one character at the end of the text
+(in general use `$`, for `DNAString` in R use `+`).
+
 
 ### Task 4
- * In R, implement a function `BinarySearchSA()` according to the following pseudocode.
+* In R, implement a function `BinarySearchSA()` according to the following pseudocode.
 
- * Input:
-   * a vector of integers representing a suffix array
-   * a DNAString representing a pattern to be found
-   * a DNAString representing a text to be searched
+* Input:
+    * `pattern` A `DNAString` representing a pattern to be found.
+    * `text` A `DNAString` representing a text to be searched.
+    * `SA` A vector of integers representing a suffix array of `text`.
 
 * Output:
- * a vector of two integers (start and end indexes of suffix array, where the pattern was found)
+    * A vector of two integers (the first and the last indexes of suffix array, where the pattern was found).
 
 ```
-BinarySearchSA(Pattern, Text, SuffixArray)
+BinarySearchSA(pattern, text, SA)
 1   minIndex <- 1
-2   maxIndex <- length (Text)
+2   maxIndex <- length (text)
 3   while minIndex < maxIndex
 4     midlIndex <- floor(minIndex + maxIndex) / 2
-5     if Pattern <= suffix of Text starting at position SuffixArray(midlIndex)
+5     if pattern <= suffix of text starting at position SA(midlIndex)
 6       maxIndex <- midlIndex
 7     else
 8       minIndex <- midlIndex + 1
 9   First <- minIndex
-10  maxIndex <- length(Text)
+10  maxIndex <- length(text)
 11  while maxIndex > minIndex
 12    midlIndex <- floor(minIndex + maxIndex) / 2
-13    if suffix of Text starting at position SuffixArray(midlIndex) <= Pattern
+13    if suffix of text starting at position SA(midlIndex) <= pattern
 14      minIndex <- midlIndex + 1
 15    else
 16      maxInd <- midlIndex
 17  Last <- maxIndex - 1
 18  if Last < First
-19    return('Pattern does not appear in Text')
+19    return('Pattern does not appear in text')
 20  else
 21    return First, Last
 ```
@@ -90,19 +92,19 @@ BinarySearchSA(Pattern, Text, SuffixArray)
 <details>
 <summary>Basic Git settings</summary>
 
-> * Configure the Git editor
-> ```bash
-> git config --global core.editor notepad
-> ```
-> * Configure your name and email address
-> ```bash
-> git config --global user.name "Zuzana Nova"
-> git config --global user.email z.nova@vut.cz
-> ```
-> * Check current settings
-> ```bash
-> git config --global --list
-> ```
+>* Configure the Git editor
+>    ```bash
+>    git config --global core.editor notepad
+>    ```
+>* Configure your name and email address
+>    ```bash
+>    git config --global user.name "Zuzana Nova"
+>    git config --global user.email z.nova@vut.cz
+>    ```
+>* Check current settings
+>    ```bash
+>    git config --global --list
+>    ```
 >
 </details>
 
