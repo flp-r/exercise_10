@@ -58,10 +58,34 @@ print(inverse_suffix_array)
 
 
 LCPArray <- function(text, SA, ISA){
+  m <- length(text)
+  #text <- DNAString(paste0(as.character(text), "+"))
+  LCP <- numeric(m+1)
+  LCP[1] <- -1
+  LCP[m + 1] <- -1
   
+  l <- 0
+  
+  for (i in 1:m){
+    j <- ISA[i]
+    if (j > 1){
+      k <- SA[j - 1]
+      while (text[k + l] == text[i + l]){
+        l <- l + 1
+      }
+      LCP[j] <- l
+      l <- max(l - 1, 0)
+    }
+    
+  }
+  return(LCP)
   
 }
   
 
-
+text <- DNAString("CTAATAATG+")
+SA <- SuffixArray(text)
+ISA <- InverseSuffixArray(SA)
+LCP_array <- LCPArray(text, SA, ISA)
+LCP_array
 
